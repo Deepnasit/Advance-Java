@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subtotal Calculator</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th,
+      td {
+        border: 1px solid rgb(152, 38, 38);
+        padding: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <table id="itemTable">
+      <thead>
+        <tr>
+          <th>Product info</th>
+          <th>Quantity</th>
+          <th>Price (per unit)</th>
+          <th>Price (subtotal)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Product 1</td>
+          <td><input type="number" class="quantity" value="0" /></td>
+          <td>29.99</td>
+          <td class="subtotal">0</td>
+        </tr>
+        <tr>
+          <td>Product 2</td>
+          <td><input type="number" class="quantity" value="0" /></td>
+          <td>12.99</td>
+          <td class="subtotal">0</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      const quantityInputs = document.querySelectorAll(".quantity");
+
+      quantityInputs.forEach((input) => {
+        input.addEventListener("input", updateSubtotal);
+      });
+
+      function updateSubtotal() {
+        const row = this.parentNode.parentNode;
+        const price = parseFloat(row.cells[2].textContent);
+        const quantity = parseInt(this.value);
+        const subtotalCell = row.cells[3];
+        const subtotal = price * quantity;
+        subtotalCell.textContent = subtotal.toFixed(2);
+      }
+    </script>
+  </body>
+</html>
+
+<!-- What is JavaScript Output method?
+
+=> JavaScript can "display" data in different ways:
+
+      Writing into an HTML element, using innerHTML.
+      Writing into the HTML output using document.write().
+      Writing into an alert box, using window.alert().
+      Writing into the browser console, using console.log().
+
+
+How to used JavaScript Output method?
+
+=>  Using innerHTML :
+       To access an HTML element, JavaScript can use the document.getElementById(id) method.
+
+    Using document.write() :
+      For testing purposes, it is convenient to use document.write()
+
+    Using window.alert() :
+      You can use an alert box to display data.
+
+    Using console.log()
+      For debugging purposes, you can call the console.log() method in the browser to display data.
+
+
+How to used JavaScript Events to do all examples?
+
+    JavaScript Events are actions or occurrences that happen in the browser. They can be triggered by various user interactions or by the browser itself.
+
+    Common events include mouse clicks, keyboard presses, page loads, and form submissions. Event handlers are JavaScript functions that respond to these events, allowing developers to create interactive web applications.
+
+    Types of Events :   1. Mouse Event
+                        2. Window Event
+                        3. Keyboard Event
+                        4. Form Event
+
+     Common JavaScript Events :  onclick: Triggered when an element is clicked.
+                                 onmouseover: Fired when the mouse pointer moves over an element.
+                                 onmouseout: Occurs when the mouse pointer leaves an element.
+                                 onkeydown: Fired when a key is pressed down.
+                                 onkeyup: Fired when a key is released.
+                                 onchange: Triggered when the value of an input element changes.
+                                 onload: Occurs when a page has finished loading.
+                                 onsubmit: Fired when a form is submitted.
+                                 onfocus: Occurs when an element gets focus.
+                                 onblur: Fired when an element loses focus. -->
